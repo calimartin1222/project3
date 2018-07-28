@@ -1,8 +1,7 @@
-from django.urls import path
-
+from django.conf.urls import url
 from . import views
+from django.contrib.auth.views import login, logout
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("/order", views.order, name="order")
+    url(r'$', views.index),
 ]

@@ -1,0 +1,33 @@
+/* Coolors Exported Palette - coolors.co/aa1b29-162625-329f5b-9ee493-f7eaef */
+
+/*
+red- #aa1b29
+dark back- #1c2023
+dark green- #329f5b
+light green - #9ee493
+text white - #E3F2E6
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Advent+Pro');
+
+body{
+    background-color: #1c2023;
+    color:#E3F2E6;
+}
+.jumbotron{
+    padding:20px;
+    font-family: 'Advent Pro', sans-serif;
+    background-color: #329f5b;
+    color:#E3F2E6;
+    margin-bottom:0px;
+}
+.title{
+    padding:20px;
+    font-family: 'Advent Pro', sans-serif;
+    color: #aa1b29;
+}
+.navbar{
+    background-color: #329f5b;
+    color:#E3F2E6;
+    margin-bottom:0px;
+}

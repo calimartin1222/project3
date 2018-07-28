@@ -73,12 +73,12 @@ class pastaType(models.Model):
 
 class platterType(models.Model):
     type = models.CharField(max_length=64)
+    size = models.CharField(max_length=64)
     price = models.DecimalField(decimal_places=2, max_digits=4)
     def __str__(self):
         return f"{self.type} - ${self.price}"
 
 class topping(models.Model):
     type = models.CharField(max_length=64)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
     def __str__(self):
-        return f"{self.type} - ${self.price}"
+        return f"{self.type}"
