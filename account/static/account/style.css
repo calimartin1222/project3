@@ -9,6 +9,7 @@ text white - #E3F2E6
 */
 
 @import url('https://fonts.googleapis.com/css?family=Advent+Pro');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body{
     background-color: #1c2023;
@@ -21,13 +22,25 @@ body{
     color:#E3F2E6;
     margin-bottom:0px;
 }
-.title{
-    padding:20px;
+.title, .subtitle{
+
     font-family: 'Advent Pro', sans-serif;
-    color: #aa1b29;
 }
 .navbar{
     background-color: #329f5b;
     color:#E3F2E6;
-    margin-bottom:0px;
+    margin-bottom:10px;
+}
+.title{
+    color: #aa1b29;
+    margin-top:10px;
+}
+.subtitle{
+    font-size: 20px;
+    margin:10px;
+    color: #E3F2E6;
+}
+.info{
+    color: #E3F2E6;
+    font-family: 'Montserrat', sans-serif;
 }
