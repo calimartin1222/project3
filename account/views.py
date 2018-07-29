@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from account.forms import regForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def index(request):
-    return render(request, 'account/index.html')
+    args = {'user': request.user}
+    return render(request, 'account/index.html', args)
 
 def register(request):
     if request.method =='POST':
@@ -16,7 +19,3 @@ def register(request):
         form = regForm()
         args = {'form': form}
         return render(request, 'account/registerForm.html', args)
-
-def info(request):
-    args = {'user': request.user}
-    return render(request, 'account/info.html', args)

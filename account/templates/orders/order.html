@@ -3,6 +3,45 @@
 {% block title %}
     Order
 {% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="../static/javascript/menu.js"></script>
+{% endblock %}
+
+{% block pageTitle %}
+    Order
+{% endblock %}
+
 {% block body %}
-    <p>Place an Order</p>
+
+<br>
+
+<form class="info" id="items">
+    <select>
+        <p>Menu Items</p>
+        <option value="menuItems">Menu Items</option>
+        {% for item in menuItems %}
+        <option value="{{ item }}">{{ item }}</option>
+        {% endfor %}
+    </select>
+</form>
+<br>
+<form id="Pizza">
+    <p>Pizza</p>
+        <select>
+            <option value="pizzaTypes">Pizza Types</option>
+            {% for type in pizzaTypes %}
+            <option value="{{ type.type }}">{{ type.type }}</option>
+            {% endfor %}
+        </select>
+</form>
+<br>
+<form id="toppings">
+    <p>Toppings</p>
+    {% for topping in toppings %}
+    <input type="checkbox" id="{{ topping }}">{{ topping }}</input>
+    {% endfor %}
+</form>
+<br>
+<button value="add" href="/place-order">Add Item to Cart</button>
 {% endblock %}

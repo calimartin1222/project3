@@ -5,5 +5,7 @@ from django.contrib.auth.views import login, logout
 
 urlpatterns = [
     path('', views.index),
-    path('menu/', views.menu, name='menu')
+    path('menu/', views.menu, name='menu'),
+    path('order/', views.order, name='order'),
+    path('place-order/', views.placeOrder, name='placeOrder')
 ]

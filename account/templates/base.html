@@ -7,44 +7,67 @@
 
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}"/>
+        {% block js %}{% endblock %}
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-    <div class="jumbotron">
 
-        <h1 class="display-4">
+        <div class="jumbotron">
             {% load static %}
-            <img src="{% static "pinocchio_216.gif" %}" style="height:100px"/>
-            Pinocchio's Pizza & Subs
-        </h1>
-    </div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/menu">Menu</a></li>
-
-            <li class="nav-item"><a class="nav-link" href="#">Directions</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Sicilian vs. Regular</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="/account/login">Login</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Place an Order</a></li>
-        </ul>
-
-            <p class="subtitle">74 Winthrop Street Harvard Square | 617-876-4897</p>
+            <img src="{% static "pinocchio_216.gif" %}" style="height:100px;display:inline;"/>
+            <h1 class="display-4" style="display:inline;">
+                Pinocchio's Pizza & Subs
+            </h1>
         </div>
-    </nav>
-    <div class='container'>
-        <div class="row">
-          <div class="col-6">{% block column1 %}{% endblock %}</div>
-          <div class="col-6">{% block column2 %}{% endblock %}</div>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/menu">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/order">Order</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Directions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sicilian vs. Regular</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item"><a class="nav-link" href="/account/logout">Logout</a></li>
+                </ul>
+                <p class="subtitle">74 Winthrop Street Harvard Square | 617-876-4897</p>
+
+                {% else %}
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/menu">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Directions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Hours</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sicilian vs. Regular</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item"><a class="nav-link" href="/account/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/account/register">Register</a></li>
+                </ul>
+                <p class="subtitle">74 Winthrop Street Harvard Square | 617-876-4897</p>
+
+                {% endif %}
+
+            </div>
+        </nav>
+
+        <div class="container">
+            <h1 class="title">{% block pageTitle %}{% endblock %}</h1>
+            <div class="row">
+              <div class="col-6">{% block column1 %}{% endblock %}</div>
+              <div class="col-6">{% block column2 %}{% endblock %}</div>
+            </div>
+                {% block body %}
+                {% endblock %}
         </div>
-    </div>
-    {% block body %}
-    {% endblock %}
     </body>
 </html>
