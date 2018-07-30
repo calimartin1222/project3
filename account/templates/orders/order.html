@@ -6,7 +6,7 @@
 
 {% block js %}
 <script type="text/javascript" src="../static/javascript/menu.js"></script>
-{% endblock %}
+{% endblock js %}
 
 {% block pageTitle %}
     Order
@@ -15,33 +15,48 @@
 {% block body %}
 
 <br>
-
 <form class="info" id="items">
+    <p>Choose an Item</p>
     <select>
-        <p>Menu Items</p>
         <option value="menuItems">Menu Items</option>
         {% for item in menuItems %}
-        <option value="{{ item }}">{{ item }}</option>
+        <option value="{{ item.item }}">{{ item.item }}</option>
         {% endfor %}
     </select>
 </form>
 <br>
-<form id="Pizza">
-    <p>Pizza</p>
-        <select>
-            <option value="pizzaTypes">Pizza Types</option>
-            {% for type in pizzaTypes %}
-            <option value="{{ type.type }}">{{ type.type }}</option>
-            {% endfor %}
-        </select>
+<p>Regular or Special?</p>
+<form class="info" id="is_special">
+  <input type="radio" name = "is_special" value="regular" checked/> Regular<br>
+  <input type="radio" name = "is_special" value="special"> Special<br>
 </form>
 <br>
-<form id="toppings">
-    <p>Toppings</p>
-    {% for topping in toppings %}
-    <input type="checkbox" id="{{ topping }}">{{ topping }}</input>
-    {% endfor %}
+<form class="info" id="sizes">
+    <p>Choose a Size</p>
+    <select>
+        <option value="menuItems">Size Options</option>
+        {% for item in menuItems %}
+        <option value="{{ item.size }}">{{ item.size }}</option>
+        {% endfor %}
+    </select>
 </form>
 <br>
-<button value="add" href="/place-order">Add Item to Cart</button>
+<form class="info" id="types">
+    <p>Choose a Type</p>
+    <select>
+        <option value="menuItems">Types</option>
+        {% for item in menuItems %}
+        <option value="{{ item.type }}">{{ item.type }}</option>
+        {% endfor %}
+    </select>
+</form>
+<br>
+<form class="info" id="toppings">
+    <p>Choose Toppings</p>
+        {% for topping in toppings %}
+        <input type="checkbox" value="{{ topping.type }}"> {{ topping.type }} </input><br>
+        {% endfor %}
+</form>
+<br>
+<button id="add_to_cart" href="/account">Add Item to Cart</button>
 {% endblock %}

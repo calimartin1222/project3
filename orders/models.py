@@ -1,89 +1,35 @@
 from django.db import models
 
-# Create your models here.
-class Pizza(models.Model):
-    customer = models.CharField(max_length=64)
-    kind = models.CharField(max_length=64)
-    size = models.CharField(max_length=64)
-    toppings = models.CharField(max_length=64)
-    special = models.CharField(max_length=64)
+#class order():
 
-    def __str__(self):
-        return f"{self.customer} ordered a {self.size}, {self.kind} Pizza with {self.toppings} - {self.special}."
 
-class Sub(models.Model):
-    customer = models.CharField(max_length=64)
-    kind = models.CharField(max_length=64)
-    size = models.CharField(max_length=64)
-    extras = models.CharField(max_length=64)
-    extraCheese = models.CharField(max_length=64)
-
-    def __str__(self):
-        return f"{self.customer} ordered a {self.size}, {self.kind} Sub with {self.extras} - {self.extraCheese}."
-
-class Pasta(models.Model):
-    customer = models.CharField(max_length=64)
-    kind = models.CharField(max_length=64)
-
-    def __str__(self):
-        return f"{self.customer} ordered a {self.kind} pasta."
-
-class Salad(models.Model):
-    customer = models.CharField(max_length=64)
-    kind = models.CharField(max_length=64)
-
-    def __str__(self):
-        return f"{self.customer} ordered a {self.kind} salad."
-
-class Platter(models.Model):
-    customer = models.CharField(max_length=64)
-    kind = models.CharField(max_length=64)
-
-    def __str__(self):
-        return f"{self.customer} ordered a {self.kind} Dinner Platter."
-#___________________________________________________________________________________________________________________________________
-class subType(models.Model):
+class menu_item(models.Model):
     type = models.CharField(max_length=64)
-    size = models.CharField(max_length=64)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
+    item = models.CharField(max_length=64, default="Pizza")
+    special = models.BooleanField(default=False)
+    size = models.CharField(max_length=64, default="Small")
+    toppings = models.IntegerField(default=0)
+    price = models.DecimalField(decimal_places=2, max_digits=4, default=0.00)
 
     def __str__(self):
-        return f"{self.type} - ${self.price}"
-
-class pizzaType(models.Model):
-    type = models.CharField(max_length=64)
-    size = models.CharField(max_length=64)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
-
-    def __str__(self):
-        return f"{self.type} - ${self.price}"
-
-class saladType(models.Model):
-    type = models.CharField(max_length=64)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
-
-    def __str__(self):
-        return f"{self.type} - ${self.price}"
-
-class pastaType(models.Model):
-    type = models.CharField(max_length=64)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
-    def __str__(self):
-        return f"{self.type} - ${self.price}"
-
-class platterType(models.Model):
-    type = models.CharField(max_length=64)
-    size = models.CharField(max_length=64)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
-    def __str__(self):
-        return f"{self.type} - ${self.price}"
+        special_if=""
+        if(self.special):
+            special_if="Special"
+            return f"{special_if} {self.size} {self.type} {self.item} - {self.price}"
+        elif(self.toppings==0):
+            return f"{self.size} {self.type} {self.item} - {self.price}"
+        elif(self.toppings==1):
+            return f"{special_if} {self.size} {self.type} {self.item} with {self.toppings} topping - {self.price}"
+        else:
+            special_if=""
+            return f"{special_if} {self.size} {self.type} {self.item} with {self.toppings} toppings - {self.price}"
 
 class topping(models.Model):
+    item = models.CharField(max_length=64, default="Pizza")
     type = models.CharField(max_length=64)
+    price = models.DecimalField(decimal_places=2, max_digits=4, default=0.00)
     def __str__(self):
-        return f"{self.type}"
-
-class menuItem(models.Model):
-    type = models.CharField(max_length=64)
-    def __str__(self):
-        return f"{self.type}"
+        if self.price==0.00:
+            return f"{self.item} - {self.type}"
+        else:
+            return f"{self.item} - {self.type} Extra {self.price}"

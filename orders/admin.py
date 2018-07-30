@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import subType, pastaType, saladType, pizzaType, topping, platterType, menuItem
+from .models import menu_item, topping
 # Pizza, Sub, Pasta, Salad, Platter,
 #Register your models here.
 # admin.site.register(Pizza)
@@ -10,10 +10,5 @@ from .models import subType, pastaType, saladType, pizzaType, topping, platterTy
 # admin.site.register(Salad)
 # admin.site.register(Platter)
 
-admin.site.register(subType)
-admin.site.register(pastaType)
-admin.site.register(saladType)
-admin.site.register(platterType)
+admin.site.register(menu_item)
 admin.site.register(topping)
-admin.site.register(pizzaType)
-admin.site.register(menuItem)

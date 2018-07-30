@@ -4,6 +4,7 @@ from django.template import Context, loader
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from orders.models import *
+from django.forms.models import model_to_dict
 
 # Create your views here.
 
@@ -15,13 +16,17 @@ def menu(request):
 
 @login_required
 def order(request):
-    menuItems = menuItem.objects.all()
-    pizzaTypes = pizzaType.objects.all()
+    menuItems = menu_item.objects.all()
     toppings = topping.objects.all()
-    return render(request, "orders/order.html", {'pizzaTypes' : pizzaTypes, 'toppings' : toppings, 'menuItems' : menuItems})
+    return render(request, "orders/order.html", {'menuItems' : menuItems, 'toppings' : toppings})
 
-def placeOrder(request):
-    if request.method =='POST':
-        if form.is_valid():
-            form.save()
-            return redirect('/account')
+@login_required
+def cart(request):
+    if request.method == "POST":
+        order = menu_item.objects.get(item = "Pizza", size = "Large")
+        args = {
+            'order' : order
+        }
+        return render(request, 'orders/cart.html', args)
+    else:
+        return render(request, 'orders/cart.html')
