@@ -33,3 +33,13 @@ class topping(models.Model):
             return f"{self.item} - {self.type}"
         else:
             return f"{self.item} - {self.type} Extra {self.price}"
+
+class item(models.Model):
+    item = models.CharField(max_length=64)
+    def __str__(self):
+        return f"{self.item}"
+
+class size(models.Model):
+    size = models.CharField(max_length=64)
+    def __str__(self):
+        return f"{self.size}"

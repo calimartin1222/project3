@@ -16,9 +16,11 @@ def menu(request):
 
 @login_required
 def order(request):
-    menuItems = menu_item.objects.all()
+    items = list(menu_item.objects.values_list('item', flat=True).distinct())
+    sizes = menu_item.objects.values('size').distinct()
     toppings = topping.objects.all()
-    return render(request, "orders/order.html", {'menuItems' : menuItems, 'toppings' : toppings})
+    return render(request, "orders/order.html", {'items' : items, 'toppings' : toppings,
+    "sizes": sizes})
 
 @login_required
 def cart(request):

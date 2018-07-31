@@ -6,15 +6,16 @@
         <!--link to created stylesheet design.css-->
 
         {% load static %}
+        <script type="text/javascript" src="{% static 'account/menu.js' %}"></script>
+        {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}"/>
-        {% block js %}{% endblock %}
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
 
         <div class="jumbotron">
             {% load static %}
-            <img src="{% static "pinocchio_216.gif" %}" style="height:100px;display:inline;"/>
+            <img src="{% static "account/pinocchio_216.gif" %}" style="height:100px;display:inline;"/>
             <h1 class="display-4" style="display:inline;">
                 Pinocchio's Pizza & Subs
             </h1>
