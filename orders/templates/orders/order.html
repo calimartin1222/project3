@@ -11,16 +11,16 @@
 {% block body %}
 
 <br>
-    <form class="info">
-        <p>Choose an Item</p>
-        <select id="items">
-            <option value="item">Menu Items</option>
-            {% for x in items %}
-            <option value="{{ x }}">{{ x }}</option>
-            {% endfor %}
-        </select>
-    </form>
-    <br>
+<form class="info">
+    <p>Choose an Item</p>
+    <select id="items">
+        <option value="item">Menu Items</option>
+        {% for x in items %}
+        <option value="{{ x }}">{{ x }}</option>
+        {% endfor %}
+    </select>
+</form>
+<br>
 
 <div id="mainDiv"></div>
 
@@ -32,20 +32,20 @@
     </form>
     <br>
     <form class="info">
-        <p>Choose a Size</p>
-        <select id="sizes">
-            <option value="item">Sizes</option>
-            {% for x in sizes %}
-            <option value="{{ x.value }}">{{ x.value }}</option>
-            {% endfor %}
-        </select>
-    </form>
-    <br>
+    <p>Choose a Size</p>
+    <select id="sizes">
+        <option value="item">Sizes</option>
+        {% for x in sizes %}
+        <option value="{{ x }}">{{ x }}</option>
+        {% endfor %}
+    </select>
+</form>
+<br>
     <form class="info" id="types">
         <p>Choose a Type</p>
         <select>
             <option value="types">Types</option>
-            {% for type in types %}
+            {% for type in pizzaTypes %}
             <option value="{{ type }}">{{ type }}</option>
             {% endfor %}
         </select>
@@ -58,6 +58,95 @@
             {% endfor %}
     </form>
     <br>
+    <button id="add_salad_to_cart" href="/account">Add Item to Cart</button>
 </div>
-<button id="add_to_cart" href="/account">Add Item to Cart</button>
+
+<div id="SubDiv" style="display:none;">
+    <br>
+    <form class="info">
+        <p>Choose a Size</p>
+        <select id="sizes">
+            <option value="item">Sizes</option>
+            {% for x in sizes %}
+            <option value="{{ x }}">{{ x }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <br>
+    <form class="info" id="types">
+        <p>Choose a Type</p>
+        <select>
+            <option value="types">Types</option>
+            {% for type in subTypes %}
+            <option value="{{ type }}">{{ type }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <br>
+    <form class="info" id="extra">
+        {% for extra in subExtras %}
+        <input type="checkbox" name="subExtras" value="{{ extra }}">{{ extra }}<br>
+        {% endfor %}
+    </form>
+    <br>
+    <button id="add_sub_to_cart" href="/account">Add Item to Cart</button>
+</div>
+
+<div id="PastaDiv" style="display:none;">
+    <br>
+    <form class="info" id="types">
+        <p>Choose a Type</p>
+        <select>
+            <option value="types">Types</option>
+            {% for type in pastaTypes %}
+            <option value="{{ type }}">{{ type }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <br>
+    <button id="add_pasta_to_cart" href="/account">Add Item to Cart</button>
+</div>
+<br>
+
+<div id="SaladDiv" style="display:none;">
+    <br>
+    <form class="info" id="types">
+        <p>Choose a Type</p>
+        <select>
+            <option value="types">Types</option>
+            {% for type in saladTypes %}
+            <option value="{{ type }}">{{ type }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <br>
+    <button id="add_salad_to_cart" href="/account">Add Item to Cart</button>
+</div>
+<br>
+
+<div id="Dinner_PlatterDiv" style="display:none;">
+    <br>
+    <form class="info" id="types">
+        <p>Choose a Type</p>
+        <select>
+            <option value="types">Types</option>
+            {% for type in platterTypes %}
+            <option value="{{ type }}">{{ type }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <br>
+    <form class="info">
+        <p>Choose a Size</p>
+        <select id="sizes">
+            <option value="item">Sizes</option>
+            {% for x in sizes %}
+            <option value="{{ x }}">{{ x }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <br>
+    <button id="add_platter_to_cart" href="/account">Add Item to Cart</button>
+</div>
+
 {% endblock %}

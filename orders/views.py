@@ -17,10 +17,28 @@ def menu(request):
 @login_required
 def order(request):
     items = list(menu_item.objects.values_list('item', flat=True).distinct())
-    sizes = menu_item.objects.values('size').distinct()
+
+    sizes = list(menu_item.objects.values_list('size', flat=True).distinct())
+
+    pizzaTypes = list(menu_item.objects.values_list('type', flat=True).filter(item__in=['Pizza']).distinct())
+
+    subTypes = list(menu_item.objects.values_list('type', flat=True).filter(item__in=['Sub']).distinct())
+
+    pastaTypes = list(menu_item.objects.values_list('type', flat=True).filter(item__in=['Pasta']).distinct())
+
+    saladTypes = list(menu_item.objects.values_list('type', flat=True).filter(item__in=['Salad']).distinct())
+
+    platterTypes = list(menu_item.objects.values_list('type', flat=True).filter(item__in=['Dinner Platter']).distinct())
+
+    subExtras = list(topping.objects.values_list('type', flat=True).filter(item__in=['Sub']).distinct())
+
+    sizes.remove("N/A")
+
     toppings = topping.objects.all()
+
     return render(request, "orders/order.html", {'items' : items, 'toppings' : toppings,
-    "sizes": sizes})
+    'sizes': sizes, 'pizzaTypes': pizzaTypes,  'subTypes': subTypes, 'pastaTypes': pastaTypes,
+    'saladTypes': saladTypes, 'platterTypes': platterTypes, 'subExtras' : subExtras})
 
 @login_required
 def cart(request):

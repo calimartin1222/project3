@@ -4,12 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('items').onchange = function(){
 
-        alert(this.value);
-        document.getElementById('mainDiv').append(document.getElementById(`${this.value}Div`));
-        document.getElementById(`${this.value}Div`).style.display = "block";
-    };
+        value = this.value;
 
-    document.getElementById('is_special').onchange = function(){
-        alert(document.querySelector('input[name = "is_specialRD"]:checked').value);
+        document.getElementById('mainDiv').innerHTML = '';
+        alert(value);
+
+        if(value === "Dinner Platter"){
+            value = "Dinner_Platter"
+        }
+
+        document.getElementById('mainDiv').append(document.getElementById(`${value}Div`));
+        document.getElementById(`${value}Div`).style.display = "block";
+
+
     };
 });
