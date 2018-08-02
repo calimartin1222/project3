@@ -5,12 +5,16 @@
 {% endblock %}
 
 {% block pageTitle %}
-    Welcome to Your Cart
+    Order Summary
 {% endblock %}
 
 {% block body %}
-<p class="info">{{ message }}</p>
-<!--<ul>-->
-<!--    <li>{{ order_info }}</li>-->
-<!--</ul>-->
+
+
+<ul>
+    {% for order in orders %}
+    <li>{{ order }}</li>
+    {% endfor %}
+</ul>
+<p class="info">Your Total Price is {{ total_price }}</p>
 {% endblock %}

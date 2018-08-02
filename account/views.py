@@ -3,17 +3,12 @@ from account.forms import regForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-global user_name
-
 # Create your views here.
 @login_required
 def index(request):
     user_name = request.user
     args = {'user': request.user}
     return render(request, 'account/index.html', args)
-
-def get_user():
-    return user_name
 
 def register(request):
     if request.method =='POST':

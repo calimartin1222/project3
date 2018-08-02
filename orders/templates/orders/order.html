@@ -11,7 +11,8 @@
 {% block body %}
 <h1 style="display:none;" id="name">{{ user.first_name }}</h1>
 <br>
-<form class="info">
+
+<form class="info" method="Post">
     <p>Choose an Item</p>
     <select id="items">
         <option value="item">Menu Items</option>
@@ -21,17 +22,17 @@
     </select>
 </form>
 <br>
-
+<!--sets empty div where things are going to appear-->
 <div id="mainDiv"></div>
-
+<!--goes through and makes divs specific to item because the items have different attributes-->
 <div id="PizzaDiv" style="display:none;">
     <p>Regular or Special?</p>
-    <form class="info" id="is_special">
-      <input type="radio" name = "is_specialRD" value="regular" checked/> Regular<br>
-      <input type="radio" name = "is_specialRD" value="special"> Special<br>
+    <form class="info" id="is_special" method="Post">
+        <input type="radio" name = "is_specialRD" value="regular" checked/> Regular<br>
+        <input type="radio" name = "is_specialRD" value="special"> Special<br>
     </form>
     <br>
-    <form class="info">
+    <form class="info" method="Post">
     <p>Choose a Size</p>
     <select id="sizes">
         <option value="sizes">Sizes</option>
@@ -41,7 +42,7 @@
     </select>
 </form>
 <br>
-    <form class="info">
+    <form class="info" method="Post">
         <p>Choose a Type</p>
         <select id="types">
             <option value="types">Types</option>
@@ -51,7 +52,7 @@
         </select>
     </form>
     <br>
-    <form class="info" id="toppings">
+    <form class="info" id="toppings" method="Post">
         <p>Choose Toppings</p>
             {% for topping in toppings %}
             <input type="checkbox" class = "topping" name = "topping" value="{{ topping.type }}" onclick="countChecked();"> {{ topping.type }} </input>
@@ -64,7 +65,7 @@
 
 <div id="SubDiv" style="display:none;">
     <br>
-    <form class="info">
+    <form class="info" method="Post">
         <p>Choose a Size</p>
         <select id="sizes">
             <option value="item">Sizes</option>
@@ -84,7 +85,7 @@
         </select>
     </form>
     <br>
-    <form class="info" id="extras">
+    <form class="info" id="extras" method="Post">
         {% for extra in subExtras %}
         <input type="checkbox" name="subExtras" value="{{ extra }}">{{ extra }}<br>
         {% endfor %}
@@ -95,7 +96,7 @@
 
 <div id="PastaDiv" style="display:none;">
     <br>
-    <form class="info">
+    <form class="info" method="Post">
         <p>Choose a Type</p>
         <select id="types">
             <option value="types">Types</option>
@@ -111,7 +112,7 @@
 
 <div id="SaladDiv" style="display:none;">
     <br>
-    <form class="info">
+    <form class="info" method="Post">
         <p>Choose a Type</p>
         <select id="types">
             <option value="types">Types</option>
@@ -127,7 +128,7 @@
 
 <div id="Dinner_PlatterDiv" style="display:none;">
     <br>
-    <form class="info">
+    <form class="info" method="Post">
         <p>Choose a Type</p>
         <select id="types">
             <option value="types">Types</option>
@@ -137,7 +138,7 @@
         </select>
     </form>
     <br>
-    <form class="info">
+    <form class="info" method="Post">
         <p>Choose a Size</p>
         <select id="sizes">
             <option value="item">Sizes</option>

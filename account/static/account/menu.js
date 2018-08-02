@@ -1,61 +1,64 @@
+//when the page loads
 document.addEventListener('DOMContentLoaded', () => {
+    //checks if element exists to avoid breaking
     if(document.getElementById('mainDiv')){
+        //resets div when page loads
         document.getElementById('mainDiv').innerHTML = '';
-
+        //when the dropdown menu with id 'items' is changed by the user
         document.getElementById('items').onchange = function(){
-
+            //stores the user's selection value
             value = this.value;
-
+            //resets div
             document.getElementById('mainDiv').innerHTML = '';
-
+            //just a little syntax error that was caught,
+            //an id can't have a space, so just underscore
             if(value === "Dinner Platter"){
                 value = "Dinner_Platter";
             }
-
+            //appends premade div for specific menu item and makes if visible
             document.getElementById('mainDiv').append(document.getElementById(`${value}Div`));
             document.getElementById(`${value}Div`).style.display = "block";
         };
-
+        //if any of the 'submit' buttons are clicked do the following
+        //just forewarning, I had to kinda 'fake' a single form even
+        //though I did use different forms for the different attributes
+        //hope it makes sense
         if(document.getElementsByClassName('submit_order')){
             document.querySelectorAll('.submit_order').forEach(function(button) {
-
                 button.onclick = function() {
-
+                    //the user.request value was passed through to javascript via
+                    //an invisible p tage, I'm just accessing it here
                     user_name = document.getElementById('name').innerHTML;
+                    //gets currently selected menu item
                     item_select = document.getElementById('items');
                     item = item_select[item_select.selectedIndex].value;
-
+                    //error checking - doesn't execute following code if element
+                    //doesn't exist so the code doesn't break
                     if(document.getElementById('sizes') != null){
-
+                        //gets currently selected size
                         size_select = document.getElementById('sizes');
                         size = size_select[size_select.selectedIndex].value;
-
-                        if(size === "sizes"){
-                            alert("Please Select a Size");
-                            return;
-                        }
                     }
-
+                    //error checking - doesn't execute following code if element
+                    //doesn't exist so the code doesn't break
                     if(document.getElementById('is_special') != null){
+                        //gets currently selected radio button
                         special = document.querySelector('input[name = "is_specialRD"]:checked').value;
                     }
-
+                    //error checking - doesn't execute following code if element
+                    //doesn't exist so the code doesn't break
                     if(document.getElementById('types') != null){
-
+                        //gets currently selected type
                         type_select = document.getElementById('types');
                         type = type_select[type_select.selectedIndex].value;
-
-                        if(type === "types"){
-                            alert("Please Select a Type");
-                            return;
-                        }
                     }
-
+                    //error checking - doesn't execute following code if element
+                    //doesn't exist so the code doesn't break
                     if(document.getElementById('extras') != null){
                         var extras = document.getElementsByName("subExtras");
                         var extrasList = [];
                         var extras_print = "";
-
+                        //gets all checked extras
                         for (var k = 0; k < extras.length; k++) {
                             if (extras[k].checked) {
                                 extrasList.push(extras[k].value);
@@ -75,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     }
-    //send info POST --> cart adds an order to the Order model, have the order model have "completed" boolean attribute--> if false, say order is pending in __str__
                     if(document.getElementById('toppings') != null){
 
                         var toppings = document.getElementsByName("topping");
@@ -101,11 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
-                    //dont send POST toppings_print, send toppingsList to get length later for price & add owner group
 
                     const request = new XMLHttpRequest();
 
-                    request.open('POST', '/cart');
+                    request.open('POST', '/cart/');
 
                     request.onload = () => {
                         a = document.createElement("a");
@@ -154,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     special = document.querySelector('input[name = "is_specialRD"]:checked').value;
 
                     if(checked > 3 && special != "special"){
-                        alert("You can have up to 3 toppings on a Regular Pizza. Please choose Special Pizza to have 4 or more toppings!");
+                        alert("You can have up to 3 toppings on a Regular Pizza. Please choose Special Pizza to have 4 or more toppings");
                         this.checked = false;
                     }
                 };
