@@ -36,9 +36,11 @@ def order(request):
 
     toppings = topping.objects.all()
 
+
+
     return render(request, "orders/order.html", {'items' : items, 'toppings' : toppings,
     'sizes': sizes, 'pizzaTypes': pizzaTypes,  'subTypes': subTypes, 'pastaTypes': pastaTypes,
-    'saladTypes': saladTypes, 'platterTypes': platterTypes, 'subExtras' : subExtras})
+    'saladTypes': saladTypes, 'platterTypes': platterTypes, 'subExtras' : subExtras, 'user': request.user})
 
 @login_required
 def cart(request):

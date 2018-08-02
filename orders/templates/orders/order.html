@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block body %}
-
+<h1 style="display:none;" id="name">{{ user.first_name }}</h1>
 <br>
 <form class="info">
     <p>Choose an Item</p>
@@ -34,16 +34,16 @@
     <form class="info">
     <p>Choose a Size</p>
     <select id="sizes">
-        <option value="item">Sizes</option>
+        <option value="sizes">Sizes</option>
         {% for x in sizes %}
         <option value="{{ x }}">{{ x }}</option>
         {% endfor %}
     </select>
 </form>
 <br>
-    <form class="info" id="types">
+    <form class="info">
         <p>Choose a Type</p>
-        <select>
+        <select id="types">
             <option value="types">Types</option>
             {% for type in pizzaTypes %}
             <option value="{{ type }}">{{ type }}</option>
@@ -54,11 +54,12 @@
     <form class="info" id="toppings">
         <p>Choose Toppings</p>
             {% for topping in toppings %}
-            <input type="checkbox" value="{{ topping.type }}"> {{ topping.type }} </input><br>
+            <input type="checkbox" class = "topping" name = "topping" value="{{ topping.type }}" onclick="countChecked();"> {{ topping.type }} </input>
+            <br>
             {% endfor %}
     </form>
     <br>
-    <button id="add_salad_to_cart" href="/account">Add Item to Cart</button>
+    <button type="button" class="btn btn-success submit_order">Submit Order</button>
 </div>
 
 <div id="SubDiv" style="display:none;">
@@ -73,9 +74,9 @@
         </select>
     </form>
     <br>
-    <form class="info" id="types">
+    <form class="info">
         <p>Choose a Type</p>
-        <select>
+        <select id="types">
             <option value="types">Types</option>
             {% for type in subTypes %}
             <option value="{{ type }}">{{ type }}</option>
@@ -83,20 +84,20 @@
         </select>
     </form>
     <br>
-    <form class="info" id="extra">
+    <form class="info" id="extras">
         {% for extra in subExtras %}
         <input type="checkbox" name="subExtras" value="{{ extra }}">{{ extra }}<br>
         {% endfor %}
     </form>
     <br>
-    <button id="add_sub_to_cart" href="/account">Add Item to Cart</button>
+    <button type="button" class="btn btn-success submit_order">Submit Order</button>
 </div>
 
 <div id="PastaDiv" style="display:none;">
     <br>
-    <form class="info" id="types">
+    <form class="info">
         <p>Choose a Type</p>
-        <select>
+        <select id="types">
             <option value="types">Types</option>
             {% for type in pastaTypes %}
             <option value="{{ type }}">{{ type }}</option>
@@ -104,15 +105,15 @@
         </select>
     </form>
     <br>
-    <button id="add_pasta_to_cart" href="/account">Add Item to Cart</button>
+    <button type="button" class="btn btn-success submit_order">Submit Order</button>
 </div>
 <br>
 
 <div id="SaladDiv" style="display:none;">
     <br>
-    <form class="info" id="types">
+    <form class="info">
         <p>Choose a Type</p>
-        <select>
+        <select id="types">
             <option value="types">Types</option>
             {% for type in saladTypes %}
             <option value="{{ type }}">{{ type }}</option>
@@ -120,15 +121,15 @@
         </select>
     </form>
     <br>
-    <button id="add_salad_to_cart" href="/account">Add Item to Cart</button>
+    <button type="button" class="btn btn-success submit_order">Submit Order</button>
 </div>
 <br>
 
 <div id="Dinner_PlatterDiv" style="display:none;">
     <br>
-    <form class="info" id="types">
+    <form class="info">
         <p>Choose a Type</p>
-        <select>
+        <select id="types">
             <option value="types">Types</option>
             {% for type in platterTypes %}
             <option value="{{ type }}">{{ type }}</option>
@@ -146,7 +147,25 @@
         </select>
     </form>
     <br>
-    <button id="add_platter_to_cart" href="/account">Add Item to Cart</button>
+    <button type="button" class="btn btn-success submit_order">Submit Order</button>
 </div>
+
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 {% endblock %}
