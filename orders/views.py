@@ -16,6 +16,7 @@ def menu(request):
 
 @login_required
 def order(request):
+
     items = list(menu_item.objects.values_list('item', flat=True).distinct())
 
     sizes = list(menu_item.objects.values_list('size', flat=True).distinct())
@@ -36,19 +37,32 @@ def order(request):
 
     toppings = topping.objects.all()
 
-
-
     return render(request, "orders/order.html", {'items' : items, 'toppings' : toppings,
     'sizes': sizes, 'pizzaTypes': pizzaTypes,  'subTypes': subTypes, 'pastaTypes': pastaTypes,
     'saladTypes': saladTypes, 'platterTypes': platterTypes, 'subExtras' : subExtras, 'user': request.user})
 
 @login_required
 def cart(request):
+    user = request.user
     if request.method == "POST":
-        order = menu_item.objects.get(item = "Pizza", size = "Large")
-        args = {
-            'order' : order
-        }
-        return render(request, 'orders/cart.html', args)
-    else:
+        user = str(request.user)
+        item = str(request.POST.get("item"))
+        size = str(request.POST.get("size"))
+        type = str(request.POST.get("type"))
+        toppings = int(request.POST.get("toppings"))
+        extras = int(request.POST.get("extras"))
+        special = str(request.POST.get("is_special"))
+
+        #if(item == "Pizza"):
+        item_get = menu_item.objects.get(item = item, size = size, type = type, toppings = toppings, special = special)
+
+        item_id = item_get.id
+
+        o = Order.objects.create(name=user, item_id=item_id)
+        o.save()
+
         return render(request, 'orders/cart.html')
+    else:
+        orders = list(Order.objects.filter(name=user))
+
+        return render(request, 'orders/cart.html', {'order_info': orders}, {'message': user})

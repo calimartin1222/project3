@@ -1,8 +1,5 @@
 from django.db import models
 
-#class order():
-
-
 class menu_item(models.Model):
     type = models.CharField(max_length=64)
     item = models.CharField(max_length=64, default="Pizza")
@@ -34,12 +31,15 @@ class topping(models.Model):
         else:
             return f"{self.item} - {self.type} Extra {self.price}"
 
-class item(models.Model):
-    item = models.CharField(max_length=64)
-    def __str__(self):
-        return f"{self.item}"
+class Order(models.Model):
+    name = models.CharField(max_length=64)
+    item_id = models.IntegerField(default=0)
+    completed = models.BooleanField(default=False)
 
-class size(models.Model):
-    size = models.CharField(max_length=64)
     def __str__(self):
-        return f"{self.size}"
+        complete = ""
+        if(self.completed):
+            complete = "Completed"
+        else:
+            complete = "Pending"
+        return f"Order for {self.name} - {complete}"
